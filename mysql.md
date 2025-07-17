@@ -67,3 +67,73 @@ docker logs mysqlserver ó <ID>
 ```
 docker run -d --name mysqlserver -p 3310:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
 ```
+
+### 11. Para detener un contenedor
+
+```
+docker stop <name-container> or <ID> (detención controlada)
+docker kill <name-container> or <ID> (no recomendado): detención forzada que puede generar perdida de información
+```
+
+### 12. Para inspeccionar un contenedor, imagenes y volumenes
+
+```
+docker inspect mysqlserver (contenedor)
+docker inspect mysql:8 (imagen)
+docker inspect vol-mysql
+```
+
+### 13. Para ingresar a la red virtual de Docker desde windows
+
+```
+\\wsl$ (para habilitar la red virtual de docker en windows)
+```
+
+### 14. Para crear un contenedor con un volumen anónimo
+
+```
+docker run -d --name mysqlserver -p 3310:3306 -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
+```
+
+### 15. Para listar y filtrar volumenes
+
+```
+docker volume ls
+docker volume ls | findStr <name-volume> or <ID> (windows)
+docker volume ls | grep <name-volume> or <ID> (linux/mac)
+```
+
+### 16. Para eliminar un contenedor con un volumen anónimo
+
+```
+docker rm -fv <name-container>
+```
+
+### 17. Para eliminar un volumen especifico nombrado o anónimo
+
+```
+docker volume rm <name-volume> OR <name-ID>
+```
+
+### 18. Para eliminar volumenes huerfanos
+
+```
+docker volume prune
+```
+
+### 19. Para crear un contenedor con un volumen asociado de tipo host
+
+```
+docker run -d --name mysqlserver -p 3310:3306 -v E:\docker_examples\docker\volume_mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
+```
+
+### 20. Para eliminar mediante comandos un volumen host
+```
+rmdir /s /q E:\docker_examples\docker\volume_mysql (windows)
+rm -rf /ruta/a/la/carpeta (linux/mac)
+```
+
+### 21. Para crear un contenedor con un volumen asociado de tipo nombrado
+```
+docker run -d --name mysqlserver -p 3310:3306 -v volume-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
+```
