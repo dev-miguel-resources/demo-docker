@@ -75,12 +75,13 @@ docker stop <name-container> or <ID> (detención controlada)
 docker kill <name-container> or <ID> (no recomendado): detención forzada que puede generar perdida de información
 ```
 
-### 12. Para inspeccionar un contenedor, imagenes y volumenes
+### 12. Para inspeccionar un contenedor, imagenes, volumenes y redes
 
 ```
 docker inspect mysqlserver (contenedor)
 docker inspect mysql:8 (imagen)
 docker inspect vol-mysql
+docker inspect net-mysql-new
 ```
 
 ### 13. Para ingresar a la red virtual de Docker desde windows
@@ -136,4 +137,41 @@ rm -rf /ruta/a/la/carpeta (linux/mac)
 ### 21. Para crear un contenedor con un volumen asociado de tipo nombrado
 ```
 docker run -d --name mysqlserver -p 3310:3306 -v volume-mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
+```
+
+### 22. Para crear una red de Docker
+```
+docker network create <name-network>
+docker network create <name-network> -d <type-network>
+```
+
+### 22. Para listar las redes
+```
+docker network ls
+```
+
+### 23. Para filtrar un listado de redes
+```
+docker network ls | findStr new (windows)
+docker network ls | grep new (linux/mac)
+```
+
+### 24. Para eliminar una red
+```
+docker network remove <network-name>
+```
+
+### 25. Para conectar una red con un contenedor
+```
+docker network connect <name-network> <name-container>
+```
+
+### 26. Para desconectar un contenedor de una red asociada
+```
+docker network disconnect <name-network> <name-container>
+```
+
+### 27. Para crear el contenedor en conjunto de su vinculación de red
+```
+docker run -d --name mysqlserver --network net-mysql-new -p 3310:3306 -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_USER=user -e MYSQL_PASSWORD=1234 -e MYSQL_DATABASE=sqldb mysql:8
 ```

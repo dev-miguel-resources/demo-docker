@@ -1,0 +1,64 @@
+version: "3.8"
+
+services:
+  mysql-server:
+    image: mysql:8
+    container_name: mysql-server-new
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=sqldb
+    ports:
+      - "3310:3306"
+    networks:
+      - net-sql
+    volumes:
+      - data-mysql-vol:/var/lib/mysql
+      
+networks:
+  net-sql:
+    name: net-sql
+
+volumes:
+  data-mysql-vol:
+    name: data-mysql-vol
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
